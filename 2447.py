@@ -1,16 +1,20 @@
 pic=["***","* *","***"]
-def recur(p,n):
+def recur(n):
     if(n==3):
-        return p
+        return ["***","* *","***"]
     else:
-        pic2=recur(p,)
-        for i in range(len(pic)):
-            pic[i]=pic[i]*3
-        temp=[]
-        for i in range(len(pic)):
-
-
-
-pic=recur(pic,3)
-for i in range(3):
-    print(pic[i])
+        pic2=recur(n//3)
+        pic2=pic2+pic2+pic2
+        num=len(pic2)//3
+        temp=pic2
+        for i in range(num):
+            pic2[i]=pic2[i]*3
+        for i in range(num,2*num):
+            pic2[i]=pic2[i]+" "*num+pic2[i]
+        for i in range(2*num, 3*num):
+            pic2[i]=pic2[i]*3
+        return pic2
+n=int(input())
+temp=recur(n)
+for i in temp:
+    print(i)
