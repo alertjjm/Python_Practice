@@ -1,0 +1,10 @@
+n=int(input())
+i=1
+temp=[0,1]
+if(n<=1):
+    print(temp[n])
+else:
+    while(i!=n):
+        temp.append(temp[i]+temp[i-1])
+        i+=1
+    print(temp[i])
