@@ -1,12 +1,11 @@
 n,m=map(int, input().split(" "))
 out=[]
-visited=[False]*n
 a=[0]*m
 result=[]
 def permu(index, n,m):
+    visited = [False] * n
     if index==m:
-        temp=set(out)
-        result.append(' '.join(map(str, temp)))
+        result.append(' '.join(map(str, out)))
         return
     for i in range(len(visited)):
         if not visited[i]:
@@ -16,8 +15,5 @@ def permu(index, n,m):
             visited[i]=False
             out.pop()
 permu(0,n,m)
-result=list(set(result))
-result.sort()
-
 for i in result:
     print(i)
