@@ -1,37 +1,21 @@
 n=int(input())
-chess=[False]*n
-chess=[chess]*n
-out=[]
-c=0
-def dfs():
-    global chess,c
-    for i in range(n):
-        for j in range(n):
-            #updown
-            if(len(out)>n):
-                c=c+1
-                return
-            if(chess[i][j]!=True):
-                if([i,j] not in out):
-                    out.append([i,j])
-                else:
-                    return
-                t = min(i, j)
-                for k in range(n):
-                    chess[k][j]=True
-                    chess[i][k]=True
-                    try:
-                        chess[i-t+k][j-t+k]=True
-                    except:
-                        pass
-                    try:
-                        chess[0+k][i+j-k]=True
-                    except:
-                        pass
-            else:
-                return
-            dfs()
-            chess = [False] * n
-            chess = [chess] * n
-dfs()
-print(c)
+row=[-1]*n
+result=0
+def iscaught(x):
+    for i in range(x):
+        if(row[x]==row[i] or abs(row[x]-row[i])==abs(x-i)):
+            return False
+    return True
+
+def dfs(x):
+    global result
+    if x==n:
+        result+=1
+    else:
+        for i in range(n):
+            row[x]=i
+            if(iscaught(x)):
+                dfs(x+1)
+
+dfs(0)
+print(result)
