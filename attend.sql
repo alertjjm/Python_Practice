@@ -13,7 +13,7 @@
 
 
 -- attend 데이터베이스 구조 내보내기
-CREATE DATABASE IF NOT EXISTS `attend` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `attend` DEFAULT CHARACTER SET utf8 /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `attend`;
 
 -- 테이블 attend.attendance 구조 내보내기
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `attendance` (
   PRIMARY KEY (`index`),
   KEY `personal_id` (`personal_id`),
   CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`personal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 테이블 데이터 attend.attendance:~4 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `device` (
   UNIQUE KEY `mac_addr` (`mac_addr`),
   KEY `personal_id` (`personal_id`),
   CONSTRAINT `device_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `personal` (`personal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 테이블 데이터 attend.device:~7 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `device` DISABLE KEYS */;
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   KEY `device_id` (`device_id`),
   CONSTRAINT `log_ibfk_1` FOREIGN KEY (`node_id`) REFERENCES `node` (`node_id`),
   CONSTRAINT `log_ibfk_2` FOREIGN KEY (`device_id`) REFERENCES `device` (`device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 테이블 데이터 attend.log:~11 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `node` (
   `mac_addr` varchar(255) NOT NULL,
   `room_id` int NOT NULL,
   PRIMARY KEY (`node_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 테이블 데이터 attend.node:~4 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `node` DISABLE KEYS */;
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `personal` (
   `id` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`personal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 테이블 데이터 attend.personal:~7 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `personal` DISABLE KEYS */;
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `spring_session` (
   UNIQUE KEY `SPRING_SESSION_IX1` (`SESSION_ID`),
   KEY `SPRING_SESSION_IX2` (`EXPIRY_TIME`),
   KEY `SPRING_SESSION_IX3` (`PRINCIPAL_NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- 테이블 데이터 attend.spring_session:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `spring_session` DISABLE KEYS */;
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `spring_session_attributes` (
   `ATTRIBUTE_BYTES` blob NOT NULL,
   PRIMARY KEY (`SESSION_PRIMARY_ID`,`ATTRIBUTE_NAME`),
   CONSTRAINT `SPRING_SESSION_ATTRIBUTES_FK` FOREIGN KEY (`SESSION_PRIMARY_ID`) REFERENCES `spring_session` (`PRIMARY_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- 테이블 데이터 attend.spring_session_attributes:~0 rows (대략적) 내보내기
 /*!40000 ALTER TABLE `spring_session_attributes` DISABLE KEYS */;
