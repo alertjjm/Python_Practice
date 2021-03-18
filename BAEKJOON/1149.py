@@ -1,7 +1,8 @@
-N=int(input())
+import sys
+N=int(sys.stdin.readline())
 colors=[]
 for i in range(N):
-    colors.append(list(map(int,input().split())))
+    colors.append(list(map(int,sys.stdin.readline().split())))
 
 for i in range(1,N):
     colors[i][0]=min(colors[i-1][2],colors[i-1][1])+colors[i][0]
