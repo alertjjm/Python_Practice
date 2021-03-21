@@ -1,22 +1,18 @@
-import sys;input=sys.stdin.readline
+import sys
+N=int(sys.stdin.readline())
+cities=[]
+dplist=[[10000000]*(1<<N) for i in range(N)]
+end=(1<<N)-1
+for i in range(N):
+    cities.append(list(map(int,sys.stdin.readline().split())))
 
-n=int(input())
-adj=[list(map(int,input().split())) for i in range(n)]
-cpl=(1<<n)-1    #전부다 방문
-INF=1<<30
+def dp(cur,visited):
+    if visited==end:
+        return cities[cur][0]
+    if dplist[cur][visited]!=10000000: return dplist[cur][visited]
+    for i in range(N):
+        if(visited&(1<<i)==0 and cities[cur][i]):
+            dplist[cur][visited]=min(dplist[cur][visited],dp(i,visited|1<<i)+cities[cur][i])
+    return dplist[cur][visited]
 
-def solve(cur,visited):
-    if visited==cpl:
-        return adj[cur][start] or INF
-    if DP[cur][visited]: return DP[cur][visited]
-    ans=INF
-    for i in range(n):
-        if adj[cur][i] and not visited&(1<<i):
-            ans=min(ans, solve(i,visited|(1<<i))+adj[cur][i])
-    DP[cur][visited]=ans
-    return ans
-
-ans=INF;start=0
-DP=[[0]*(1<<n) for _ in range(n)]
-ans=min(ans, solve(start,1<<start))
-print(ans)
+print(dp(0,1<<0))
