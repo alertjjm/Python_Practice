@@ -21,10 +21,6 @@ def solution(ipt):
         elif(t==False):
             return leftresult+rightresult
 
-
-
-
-
 print(solution("abcxyabcdabcdxyabc"))
 print(solution("abcdxyefghixyabcd"))
 print(solution("xxxxxx"))
